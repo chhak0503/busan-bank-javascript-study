@@ -39,11 +39,11 @@ console.log(b);
 
 
 console.log('-- 템플릿 리터럴 ------------------')
-let name = '홍길동';
+let myName = '홍길동';
 let age = 21;
 
-console.log('이름 : ' + name + ", 나이 : " + age);
-console.log(`이름 : ${name}, 나이 : ${age}`); // Template Literal
+console.log('이름 : ' + myName + ", 나이 : " + age);
+console.log(`이름 : ${myName}, 나이 : ${age}`); // Template Literal
 
 console.log('-- 화살표 함수 ------------------')
 // 일반 함수
