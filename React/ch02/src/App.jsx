@@ -3,6 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Fragment } from 'react';
+import styled from 'styled-components'
+
+// 스타일 컴포넌트 정의
+const StyledDiv = styled.div`
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  background: green;
+`;
 
 function App() {
 
@@ -139,8 +148,16 @@ function App() {
 
       <h4>JSX 스타일</h4>
 
-      <div style={null}>box1</div>
+      <div style={{
+        width: '100px', 
+        height: '100px',
+        border: '1px solid black',
+        background: 'orange'
+        }}>box1</div>
 
+      <div className='box2'>box2</div>
+      <StyledDiv>box3</StyledDiv>
+      <div className='w-[100px] h-[100px] bg-[red] border'>box4</div>
     </>
   )
 }
