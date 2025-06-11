@@ -5,6 +5,7 @@ import "./App.css";
 import RouterMainComponent from "./components/sub1/RouterMainComponent";
 import { BrowserRouter } from "react-router-dom";
 import RouteParamComponent from "./components/sub2/RouteParamComponent";
+import RouteOutletComponent from "./components/sub3/RouteOutletComponent";
 
 /*
   React Router 의존성 설치
@@ -24,6 +25,10 @@ function App() {
 
       <BrowserRouter>
         <RouteParamComponent />
+      </BrowserRouter>
+
+      <BrowserRouter>
+        <RouteOutletComponent />
       </BrowserRouter>
     </>
   );
