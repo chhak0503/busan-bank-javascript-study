@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Result1Component from "./Result1Component";
+import Result2Component from "./Result2Component";
+import Result3Component from "./Result3Component";
 
 function RouteParamComponent() {
   // 라우팅을 제공하는 hook
@@ -20,8 +22,17 @@ function RouteParamComponent() {
     // 라우팅
     navigate(`/result1${query}`);
   };
-  const btn2Handler = () => {};
-  const btn3Handler = () => {};
+  const btn2Handler = () => {
+    // 주소 파라미터 전송
+    const params = `/${formData.name}/${formData.email}/${formData.age}`;
+
+    // 라우팅
+    navigate(`/result2${params}`);
+  };
+  const btn3Handler = () => {
+    // state 전송 라우팅
+    navigate(`/result3`, { state: { formData } });
+  };
 
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,8 +74,11 @@ function RouteParamComponent() {
 
       <Routes>
         <Route path="/result1" element={<Result1Component />} />
-        <Route path="/result2" element={null} />
-        <Route path="/result3" element={null} />
+        <Route
+          path="/result2/:name/:email/:age"
+          element={<Result2Component />}
+        />
+        <Route path="/result3" element={<Result3Component />} />
       </Routes>
     </div>
   );
