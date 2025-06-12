@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import CounterContext from "../contexts/CounterContext";
-import ChildComponent from "./ChildComponent";
 
-const ParentComponent = () => {
+const ChildComponent = () => {
   // Context에서 상태값, 액션을 제공받는 hook
   const { count, increment, decrement, reset } = useContext(CounterContext);
 
   return (
-    <div className="ParentComponent">
-      <h4>ParentComponent</h4>
+    <div className="ChildComponent">
+      <h4>ChildComponent</h4>
       <p>count : {count}</p>
       <button onClick={increment}>증가</button>
       <button onClick={decrement}>감소</button>
@@ -19,10 +18,8 @@ const ParentComponent = () => {
       >
         리셋
       </button>
-
-      <ChildComponent />
     </div>
   );
 };
 
-export default ParentComponent;
+export default ChildComponent;
