@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function UserListComponent() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -18,6 +20,13 @@ function UserListComponent() {
       });
   }, []);
 
+  // 핸들러
+  const modifyHandler = (userid) => {
+    console.log(userid);
+    navigate(`/user/modify?userid=${userid}`);
+  };
+  const deleteHandler = () => {};
+
   return (
     <div className="UserListComponent">
       <h4>회원목록</h4>
@@ -33,13 +42,13 @@ function UserListComponent() {
 
           {users.map((user, index) => (
             <tr key={index}>
-              <td>{user.uid}</td>
+              <td>{user.id}</td>
               <td>{user.name}</td>
               <td>{user.birth}</td>
               <td>{user.age}</td>
               <td>
-                <button>수정</button>
-                <button>삭제</button>
+                <button onClick={() => modifyHandler(user.id)}>수정</button>
+                <button onClick={() => deleteHandler}>삭제</button>
               </td>
             </tr>
           ))}
