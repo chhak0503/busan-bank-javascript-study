@@ -25,7 +25,22 @@ function UserListComponent() {
     console.log(userid);
     navigate(`/user/modify?userid=${userid}`);
   };
-  const deleteHandler = () => {};
+  const deleteHandler = (userid) => {
+    // json-server 삭제 요청
+    fetch(`http://localhost:3000/users/${userid}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+
+        // 상태 업데이트
+        setUsers((prev) => prev.filter((user) => user.id !== userid));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="UserListComponent">
@@ -48,7 +63,7 @@ function UserListComponent() {
               <td>{user.age}</td>
               <td>
                 <button onClick={() => modifyHandler(user.id)}>수정</button>
-                <button onClick={() => deleteHandler}>삭제</button>
+                <button onClick={() => deleteHandler(user.id)}>삭제</button>
               </td>
             </tr>
           ))}
