@@ -19,7 +19,7 @@ function UserRegisterComponent() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    // json-server 등록
+    // json-server 등록 요청
     fetch(`http://localhost:3000/users`, {
       method: "POST",
       headers: {
@@ -30,6 +30,9 @@ function UserRegisterComponent() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+
+        // 목록 이동
+        navigate(`/user/list`);
       })
       .catch((err) => {
         console.log(err);
