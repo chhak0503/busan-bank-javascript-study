@@ -23,7 +23,17 @@ function App() {
   };
 
   const deleteTodo = (id) => {
-    alert("삭제!" + id);
+    //alert("삭제!" + id);
+
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  const toggleTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id == id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
   };
 
   return (
@@ -31,7 +41,7 @@ function App() {
       <TodoHeader />
       <TodoInput onAddTodo={addTodo} />
       <TodoStats />
-      <TodoList todos={todos} onDelete={deleteTodo} />
+      <TodoList todos={todos} onDelete={deleteTodo} onToggle={toggleTodo} />
       <TodoFooter />
     </div>
   );
