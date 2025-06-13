@@ -10,12 +10,28 @@ import TodoList from "./components/TodoList";
 import TodoFooter from "./components/TodoFooter";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (text) => {
+    const todo = {
+      id: Date.now(),
+      title: text,
+      completed: false,
+    };
+
+    setTodos((prev) => [...prev, todo]);
+  };
+
+  const deleteTodo = (id) => {
+    alert("삭제!" + id);
+  };
+
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white border border-gray-300 shadow">
       <TodoHeader />
-      <TodoInput />
+      <TodoInput onAddTodo={addTodo} />
       <TodoStats />
-      <TodoList />
+      <TodoList todos={todos} onDelete={deleteTodo} />
       <TodoFooter />
     </div>
   );
