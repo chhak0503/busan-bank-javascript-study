@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
+  </head>
+  <body>
+    <h3>1.XSS 실습</h3>
+
+    <form id="form">
+      <input type="text" id="comment" placeholder="댓글입력" />
+      <button type="submit">등록</button>
+    </form>
+
+    <div id="comments"></div>
+
+    <script>
+      // 문서객체 생성
+      const form = document.getElementById("form");
+      const input = document.getElementById("comment");
+      const comments = document.getElementById("comments");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const value = input.value;
+
+        // <img src='x' onerror="alert('XSS!!!')"/> <--- 악성 스크립트로 가정해서 입력필드에 입력
+        // XSS 취약점 : 사용자의 입력값을 그대로 innerHTML로 삽입
+        // XSS 방어핵심은 사용자의 입력값을 반드시 검증해야 함
+        //comments.innerHTML += `<p>${value}</p>`;
+
+        // 해결방법1 - text로 입력
+        const p = document.createElement("p");
+        p.textContent = value;
+        //comments.appendChild(p);
+
+        // 해결방법2 - 외부 라이브러리를 이용한 입력데이터 소독
+        const cleanHTML = DOMPurify.sanitize(value);
+        comments.innerHTML = cleanHTML;
+      });
+    </script>
+  </body>
+</html>
